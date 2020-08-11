@@ -2,9 +2,9 @@
 
 const fs = require('fs')
 const inquirer = require('inquirer')
-const intern = req('./lib/intern')
-const engineer = req('./lib/engineer')
-const manager = req('./lib/manager')
+// const intern = req('./lib/Intern')
+// const engineer = req('./lib/Engineer')
+// const manager = req('./lib/Manager')
 
 
 const questions = {
@@ -58,7 +58,7 @@ const questions = {
             type: "input",
             name: "gitHub",
             message: "Engineer's GitHub username:",
-            validate: validateEmail
+            validate: validateGithub
         },
     ],
     internQuestions: [
@@ -84,8 +84,35 @@ const questions = {
             type: "input",
             name: "school",
             message: "Intern's current school name:",
-            validate: validateEmail
+            validate: validateSchool
         },
     ],
 }
-
+//functions needed to validate the data using Inquirer
+function validateName(input) {
+    if (input) {
+        return true;
+    } 
+    else {
+        console.log('\n\n Please input a name.\n');
+        return false;
+    }
+}; 
+function validateNumber(input) {
+    if (parseInt(input)) {
+        return true;
+    } 
+    else {
+        console.log('\n\nPlease input a correct number ID.\n');
+        return false;
+    }
+};
+function validateEmail(input) {
+    if (input.includes('@')) {
+        return true;
+    } 
+    else {
+        console.log('\n\nPlease input a valid email address.\n');
+        return false;
+    }
+};
