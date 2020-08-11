@@ -2,9 +2,9 @@
 
 const fs = require('fs')
 const inquirer = require('inquirer')
-// const intern = req('./lib/Intern')
-// const engineer = req('./lib/Engineer')
-// const manager = req('./lib/Manager')
+const intern = require('./lib/Intern')
+const engineer = require('./lib/Engineer')
+const manager = require('./lib/Manager')
 
 
 const questions = {
@@ -19,7 +19,7 @@ const questions = {
             type: "input",
             name: "employeeID",
             message: "Team's manager ID number:",
-            validate: validateId
+            validate: validateNumber
         },
         {
             type: "input",
@@ -31,7 +31,7 @@ const questions = {
             type: "input",
             name: "officeNumber",
             message: "Team's manager office number:",
-            validate: validateOfficeNumber
+            validate: validateNumber
         },
 
     ],
@@ -58,7 +58,7 @@ const questions = {
             type: "input",
             name: "gitHub",
             message: "Engineer's GitHub username:",
-            validate: validateGithub
+            //validate: validateGithub
         },
     ],
     internQuestions: [
@@ -84,17 +84,67 @@ const questions = {
             type: "input",
             name: "school",
             message: "Intern's current school name:",
-            validate: validateSchool
+            validate: validateName
         },
     ],
-}
-//functions needed to validate the data using Inquirer
+
+
+     /////////////////////////////
+    newProfile: {
+        type: 'list',
+        name: 'newProfile',
+        message: 'Add another employee?',
+        choices: ['Engineer', 'Intern', "I am done."]
+    },
+
+    managerCard: '',
+    engineerCards: '',
+    internCards: '',
+          
+    askManager() {
+        return inquirer.prompt(this.managerQuestions)
+        .then(response => {
+                 this.managerCard += (new Manager(response.name, response.employeeID, response.email, response.officeNumber)).makeCard()
+                return this.askNewProfile()
+        })
+    },
+    askEngineer(){
+        return inquirer.prompt(this.engineerQuestions)
+        .then(response => {
+            this.engineerCards += (new Engineer(response.name, response.employeeID, response.email, response.github)).makeCard();
+            return this.askNewProfile();
+        })
+    },
+    askIntern(){
+    return inquirer.prompt(this.internQuestions)
+        .then(response => {
+            this.internCards += (new Intern(response.name, response.employeeID, response.email, response.school)).makeCard();
+            return this.askNewProfile();
+        })
+    },
+      
+    askNewProfile() {
+        return inquirer.prompt(this.newProfile)
+        .then(response => {
+            if (response.newProfile === 'Engineer') {
+                return this.askEngineer()
+            }
+            if (response.newProfile === 'Intern') {
+                return this.askIntern()
+            } 
+            return
+        })
+    }
+};
+
+
+// Validation functions for validateName, validateNumber, validateEmail
 function validateName(input) {
     if (input) {
         return true;
     } 
     else {
-        console.log('\n\n Please input a name.\n');
+        console.log('\n\nPlease enter a name.\n');
         return false;
     }
 }; 
@@ -103,7 +153,7 @@ function validateNumber(input) {
         return true;
     } 
     else {
-        console.log('\n\nPlease input a correct number ID.\n');
+        console.log('\n\nPlease enter a number.\n');
         return false;
     }
 };
@@ -112,7 +162,22 @@ function validateEmail(input) {
         return true;
     } 
     else {
-        console.log('\n\nPlease input a valid email address.\n');
+        console.log('\n\nPlease enter a email address.\n');
         return false;
     }
 };
+
+
+//Main function init()
+function init() {
+
+    questions.askManager()
+        .then(() => {
+            const page = generatePage(questions.managerCard, questions.engineerCards, questions.internCards)
+            fs.writeFile('./dist/index.html', page, err => (err) ? console.log(err) : console.log("good job"))
+        })
+}
+
+init()
+
+
