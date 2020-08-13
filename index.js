@@ -5,6 +5,7 @@ const inquirer = require('inquirer')
 const intern = require('./lib/Intern')
 const engineer = require('./lib/Engineer')
 const manager = require('./lib/Manager')
+const generatePage = require('./src/generatePage')
 
 
 const questions = {
@@ -58,7 +59,7 @@ const questions = {
             type: "input",
             name: "gitHub",
             message: "Engineer's GitHub username:",
-            //validate: validateGithub
+            validate: validateName
         },
     ],
     internQuestions: [
@@ -89,7 +90,7 @@ const questions = {
     ],
 
 
-     /////////////////////////////
+    // New profile 
     newProfile: {
         type: 'list',
         name: 'newProfile',
@@ -100,40 +101,40 @@ const questions = {
     managerCard: '',
     engineerCards: '',
     internCards: '',
-          
+
     askManager() {
         return inquirer.prompt(this.managerQuestions)
-        .then(response => {
-                 this.managerCard += (new Manager(response.name, response.employeeID, response.email, response.officeNumber)).makeCard()
+            .then(response => {
+                this.managerCard += (new Manager(response.name, response.employeeID, response.email, response.officeNumber)).makeCard()
                 return this.askNewProfile()
-        })
+            })
     },
-    askEngineer(){
+    askEngineer() {
         return inquirer.prompt(this.engineerQuestions)
-        .then(response => {
-            this.engineerCards += (new Engineer(response.name, response.employeeID, response.email, response.github)).makeCard();
-            return this.askNewProfile();
-        })
+            .then(response => {
+                this.engineerCards += (new Engineer(response.name, response.employeeID, response.email, response.github)).makeCard();
+                return this.askNewProfile();
+            })
     },
-    askIntern(){
-    return inquirer.prompt(this.internQuestions)
-        .then(response => {
-            this.internCards += (new Intern(response.name, response.employeeID, response.email, response.school)).makeCard();
-            return this.askNewProfile();
-        })
+    askIntern() {
+        return inquirer.prompt(this.internQuestions)
+            .then(response => {
+                this.internCards += (new Intern(response.name, response.employeeID, response.email, response.school)).makeCard();
+                return this.askNewProfile();
+            })
     },
-      
+
     askNewProfile() {
         return inquirer.prompt(this.newProfile)
-        .then(response => {
-            if (response.newProfile === 'Engineer') {
-                return this.askEngineer()
-            }
-            if (response.newProfile === 'Intern') {
-                return this.askIntern()
-            } 
-            return
-        })
+            .then(response => {
+                if (response.newProfile === 'Engineer') {
+                    return this.askEngineer()
+                }
+                if (response.newProfile === 'Intern') {
+                    return this.askIntern()
+                }
+                return
+            })
     }
 };
 
@@ -142,16 +143,16 @@ const questions = {
 function validateName(input) {
     if (input) {
         return true;
-    } 
+    }
     else {
         console.log('\n\nPlease enter a name.\n');
         return false;
     }
-}; 
+};
 function validateNumber(input) {
     if (parseInt(input)) {
         return true;
-    } 
+    }
     else {
         console.log('\n\nPlease enter a number.\n');
         return false;
@@ -160,7 +161,7 @@ function validateNumber(input) {
 function validateEmail(input) {
     if (input.includes('@')) {
         return true;
-    } 
+    }
     else {
         console.log('\n\nPlease enter a email address.\n');
         return false;
