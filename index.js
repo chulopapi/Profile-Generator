@@ -2,9 +2,9 @@
 
 const fs = require('fs')
 const inquirer = require('inquirer')
-const intern = require('./lib/Intern')
-const engineer = require('./lib/Engineer')
-const manager = require('./lib/Manager')
+const Intern = require('./lib/Intern')
+const Engineer = require('./lib/Engineer')
+const Manager = require('./lib/Manager')
 const generatePage = require('./src/generatePage')
 
 
@@ -159,11 +159,11 @@ function validateNumber(input) {
     }
 };
 function validateEmail(input) {
-    if (input.includes('@')) {
+    if (input.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
         return true;
     }
     else {
-        console.log('\n\nPlease enter a email address.\n');
+        console.log('\n\nPlease enter a valid email address.\n');
         return false;
     }
 };
@@ -181,4 +181,20 @@ function init() {
 
 init()
 
-
+// async function init() {
+//     inquirer
+//         .prompt(questions)
+//         .then(data => {
+//             console.log(JSON.stringify(data, null, 2));
+//             writeToFile("README.md", data);
+//         })
+//         .catch(error => {
+//             if(error.isTtyError) {
+//                 console.log("Prompt couldn't be rendered in the current environment")
+//               // Prompt couldn't be rendered in the current environment
+//             }
+//             console.error('ERROR=>',error)
+//         });
+// }
+// // function call to initialize program
+// init();
