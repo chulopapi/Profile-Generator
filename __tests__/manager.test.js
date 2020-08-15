@@ -7,7 +7,7 @@ test('creates a manager object', () => {
     expect(manager.role).toBe('Manager')
     expect(manager.employeeID).toBe('1')
     expect(manager.email).toBe('marlon.guandique@gmail.com')
-    expect(manager.officeNumber).toBe('1')
+    expect(manager.officeNumber).toBe('11')
 })
 
 test('creates HTML content  with the makeCard method', () => {
