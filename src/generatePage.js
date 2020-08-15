@@ -1,5 +1,6 @@
 const generatePage = (manager,engineers,interns) => {
- 
+    
+    // Generates the template for HTML in the dist folder
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -11,22 +12,22 @@ const generatePage = (manager,engineers,interns) => {
     </head>
     <body>
         <header class="container-fluid">
-            <nav class="navbar navbar-dark justify-content-center" style="background-color: #ff4444;">
-                <h1 class=" text-light p-4">My Team</h1>
+            <nav class="navbar navbar-dark justify-content-center" style="background-color: #E84756;">
+                <h1 class=" text-light p-4">The Team</h1>
             </nav>
         </header>
         <main class="container">
-            <!-- Manager row -->
+            <!-- Manager section row -->
             <section class="row justify-content-center mt-md-5">
                 <div class="col-12 d-block text-center my-2"><h3>Manager</h3></div>
                     ${manager}
             </section>
-            <!-- Engineer row -->
+            <!-- Engineer section row -->
             <section class="row justify-content-center mt-md-4">
                 <div class="col-12 d-block text-center my-2"><h3>${(engineers) ? 'Engineers' : ''}</h3></div>
                 ${engineers}
             </section>
-            <!-- Intern Row -->
+            <!-- Intern section Row -->
             <section class="row justify-content-center mt-md-4">
                 <div class="col-12 d-block text-center my-2"><h3>${(interns) ? 'Interns' : ''}</h3></div>
                 ${interns}
@@ -37,6 +38,5 @@ const generatePage = (manager,engineers,interns) => {
     </body>
     </html>
     `
-}       
-
+}
 module.exports = generatePage;
