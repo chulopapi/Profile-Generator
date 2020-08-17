@@ -1,6 +1,6 @@
 const generatePage = (manager,engineers,interns) => {
     
-    // Generates the template for HTML in the dist folder
+    // Generates the template for HTML final
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -9,6 +9,7 @@ const generatePage = (manager,engineers,interns) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My Team</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://kit.fontawesome.com/c502137733.js"></script>
     </head>
     <body>
         <header class="container-fluid">
@@ -19,8 +20,9 @@ const generatePage = (manager,engineers,interns) => {
         <main class="container">
             <!-- Manager section row -->
             <section class="row justify-content-center mt-md-5">
-                <div class="col-12 d-block text-center my-2"><h3>Manager</h3></div>
+                <div class="col-12 d-block text-center my-2">
                     ${manager}
+                </div>
             </section>
             <!-- Engineer section row -->
             <section class="row justify-content-center mt-md-4">

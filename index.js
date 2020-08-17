@@ -89,7 +89,6 @@ const questions = {
         },
     ],
 
-
     // New profile 
     newProfile: {
         type: 'list',
@@ -138,7 +137,6 @@ const questions = {
     }
 };
 
-
 // Validation functions for validateName, validateNumber, validateEmail
 function validateName(input) {
     if (input) {
@@ -162,7 +160,7 @@ function validateEmail(input) {
     if (input.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
         return true;
     }
-    else {
+    else { 
         console.log('\n\nPlease enter a valid email address.\n');
         return false;
     }
@@ -174,6 +172,7 @@ function init() {
 
     questions.askManager()
         .then(() => {
+            //console.log('MANAGER CARD',questions.managerCard);
             const page = generatePage(questions.managerCard, questions.engineerCards, questions.internCards)
             fs.writeFile('./dist/index.html', page, err => (err) ? console.log(err) : console.log("good job"))
         })
