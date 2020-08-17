@@ -97,6 +97,8 @@ const questions = {
         choices: ['Engineer', 'Intern', "I am done."]
     },
 
+     // Initializing the cards
+
     managerCard: '',
     engineerCards: '',
     internCards: '',
@@ -122,7 +124,7 @@ const questions = {
                 return this.askNewProfile();
             })
     },
-
+    // After getting manager information, this function create a new profile for Engineer or Intern
     askNewProfile() {
         return inquirer.prompt(this.newProfile)
             .then(response => {
@@ -143,7 +145,7 @@ function validateName(input) {
         return true;
     }
     else {
-        console.log('\n\nPlease enter a name.\n');
+        console.log('\n\nPlease provide a name.\n');
         return false;
     }
 };
@@ -152,7 +154,7 @@ function validateNumber(input) {
         return true;
     }
     else {
-        console.log('\n\nPlease enter a number.\n');
+        console.log('\n\nPlease provide a number.\n');
         return false;
     }
 };
@@ -161,7 +163,7 @@ function validateEmail(input) {
         return true;
     }
     else { 
-        console.log('\n\nPlease enter a valid email address.\n');
+        console.log('\n\nPlease provide a valid email address.\n');
         return false;
     }
 };
@@ -180,20 +182,3 @@ function init() {
 
 init()
 
-// async function init() {
-//     inquirer
-//         .prompt(questions)
-//         .then(data => {
-//             console.log(JSON.stringify(data, null, 2));
-//             writeToFile("README.md", data);
-//         })
-//         .catch(error => {
-//             if(error.isTtyError) {
-//                 console.log("Prompt couldn't be rendered in the current environment")
-//               // Prompt couldn't be rendered in the current environment
-//             }
-//             console.error('ERROR=>',error)
-//         });
-// }
-// // function call to initialize program
-// init();

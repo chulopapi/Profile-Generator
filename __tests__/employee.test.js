@@ -9,8 +9,8 @@ test('creates an employee object', () => {
     expect(employee.email).toBe('marlon.guandique@gmail.com')
 })
 
-test('creates HTML content  with the startCard method', () => {
-    const employee = new Employee('Robert','4','robert@email.com')
+test('produces HTML data using the startCard method', () => {
+    const employee = new Employee('Marlon','1','marlon.guandique@mail.com')
     const card = employee.startCard('')
     expect(card).toContain(employee.name)
     expect(card).toContain(employee.role)
