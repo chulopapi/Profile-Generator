@@ -10,7 +10,7 @@ test('creates a manager object', () => {
     expect(manager.officeNumber).toBe('1')
 })
 
-test('creates HTML content  with the makeCard method', () => {
+test('produces HTML data using the startCard method', () => {
     const manager = new Manager('Marlon','1','marlon.guandique@gmail.com','2')
     const card = manager.makeCard()
     expect(card).toContain(manager.name)
