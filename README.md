@@ -25,6 +25,11 @@
 
 ## [Video Instructions on running the program](https://drive.google.com/file/d/1PPTjEHikq2aw8IpYNsNC92iAewU48Vep/view)
 
-## Sample Web page output
+### Sample Web page output
 
 <img width="2025" alt="Screen Shot 2020-08-17 at 7 55 37 PM" src="https://user-images.githubusercontent.com/14985358/90465214-c1a0b200-e0c3-11ea-8036-04777d6af9e1.png">
+
+### Test performed by JEST:
+
+<img width="1452" alt="Screen Shot 2020-08-17 at 8 01 25 PM" src="https://user-images.githubusercontent.com/14985358/90465657-ac785300-e0c4-11ea-8f9b-e22806749663.png">
+
