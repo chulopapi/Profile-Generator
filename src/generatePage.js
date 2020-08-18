@@ -1,6 +1,6 @@
-const generatePage = (manager,engineers,interns) => {
-    
-    // Generates the template for HTML final
+const generatePage = (manager, engineers, interns) => {
+
+    // Generates the template for final HTML page
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -26,12 +26,12 @@ const generatePage = (manager,engineers,interns) => {
             </section>
             <!-- Engineer section row -->
             <section class="row justify-content-center mt-md-4">
-                <div class="col-12 d-block text-center my-2"><h3>${(engineers) ? 'Engineers' : ''}</h3></div>
+                <div class="col-12 d-block text-center my-2"><h3>${(engineers) ? '' : ''}</h3></div>
                 ${engineers}
             </section>
             <!-- Intern section Row -->
             <section class="row justify-content-center mt-md-4">
-                <div class="col-12 d-block text-center my-2"><h3>${(interns) ? 'Interns' : ''}</h3></div>
+                <div class="col-12 d-block text-center my-2"><h3>${(interns) ? '' : ''}</h3></div>
                 ${interns}
             </section>
         </main>

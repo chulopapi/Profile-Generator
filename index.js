@@ -7,6 +7,8 @@ const Engineer = require('./lib/Engineer')
 const Manager = require('./lib/Manager')
 const generatePage = require('./src/generatePage')
 
+// This is the inquirer handling the questionare for each team member, the questions are stored to be processed 
+// once all the selections a made and we no longer need to continue.
 
 const questions = {
     managerQuestions: [
